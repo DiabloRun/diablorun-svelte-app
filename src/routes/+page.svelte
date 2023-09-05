@@ -17,6 +17,12 @@
 			vitality: 0,
 			energy: 0
 		},
+		speeds: {
+			fcr: 0,
+			frw: 0,
+			fhr: 0,
+			ias: 0
+		},
 		resitances: {
 			fire: 0,
 			cold: 0,
@@ -45,6 +51,12 @@
 					dexterity: responseData.character.dexterity,
 					vitality: responseData.character.vitality,
 					energy: responseData.character.energy
+				},
+				speeds: {
+					fcr: responseData.character.fcr,
+					frw: responseData.character.frw,
+					fhr: responseData.character.fhr,
+					ias: responseData.character.ias
 				},
 				resistances: {
 					fire: responseData.character.fire_res,
@@ -103,24 +115,42 @@
 		<svelte:fragment slot="sidebarLeft">
 			<h1>{character.name}</h1>
 			<h2>{character.hero}</h2>
-			<p>{character.gold} gold</p>
-			{character.level}
-			<ul>
+			<p>{character.gold_total} gold</p>
+			<p>{character.gold} gold in hand</p>
+			<p>{character.gold_stash} gold in stash</p>
+			<p>{character.area} area</p>
+			<p>{character.difficulty}</p>
+			<p>{character.difficulty}</p>
+			<p>Players {character.players}</p>
+			<p>{character.hardcore ? 'Softcore' : 'Hardcore'}</p>
+			<p>{character.lod ? 'Classic' : 'Expansion'}</p>
+			<p>{character.dead ? 'Dead' : 'Alive'}</p>
+			<p>{character.deaths} deaths</p>
+			<p>{character.town_visits}</p>
+			<div class="grid grid-cols-4 text-center">
 				{#each Object.keys(character.attributes) as attribute}
-					<li>
-						<strong>{attribute}:</strong>
-						{character.attributes[attribute]}
-					</li>
+					<div class="border-t border-surface-700/50 px-4 py-8">
+						<div class="font-mono text-2xl">{character.attributes[attribute]}</div>
+						<div class="text-sm font-light text-surface-400">{attribute}</div>
+					</div>
 				{/each}
-			</ul>
-			<ul>
+			</div>
+			<div class="grid grid-cols-4 text-center">
+				{#each Object.keys(character.speeds) as speed}
+					<div class="border-t border-surface-700/50 px-4 py-8">
+						<div class="font-mono text-2xl">{character.speeds[speed]}</div>
+						<div class="text-sm font-light uppercase text-surface-400">{speed}</div>
+					</div>
+				{/each}
+			</div>
+			<div class="grid grid-cols-4 text-center">
 				{#each Object.keys(character.resistances) as resistance}
-					<li>
-						<strong>{resistance}:</strong>
-						{character.resistances[resistance]}
-					</li>
+					<div class="border-t border-surface-700/50 px-4 py-8">
+						<div class="font-mono text-2xl">{character.resistances[resistance]}</div>
+						<div class="text-sm font-light text-surface-400">{resistance}</div>
+					</div>
 				{/each}
-			</ul>
+			</div>
 		</svelte:fragment>
 
 		{#if items.length > 0}
@@ -156,6 +186,7 @@
 
 		<svelte:fragment slot="footer">
 			Updated {character.update_time}
+			Seconds played {character.seconds_played}
 		</svelte:fragment>
 	</CharacterLayout>
 {/if}

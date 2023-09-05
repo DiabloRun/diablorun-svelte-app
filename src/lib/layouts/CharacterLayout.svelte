@@ -8,10 +8,10 @@
 
 <AppShell
 	slotPageContent="p-12"
-	slotHeader="border-b border-surface-700"
-	slotFooter="bg-surface-800 p-4 border-t border-surface-700"
-	slotSidebarLeft="border-r border-surface-700"
-	slotSidebarRight="p-4 bg-surface-800 w-[360px] border-l border-surface-700"
+	slotHeader="border-b border-surface-700/50"
+	slotFooter="bg-surface-800 p-4 border-t border-surface-700/50"
+	slotSidebarLeft="border-r border-surface-700/50"
+	slotSidebarRight="bg-surface-800 w-[360px] border-l border-surface-700/50"
 >
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
